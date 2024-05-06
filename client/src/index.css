@@ -1,0 +1,18 @@
+html {
+    font-size: 15px;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    font-weight: normal;
+    top:100px;
+    color: var(--text-color);
+    padding: 1rem;
+    -webkit-font-smoothing: antialiased;
+    background-repeat: repeat-y; 
+    background-size:cover;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+
+ 
