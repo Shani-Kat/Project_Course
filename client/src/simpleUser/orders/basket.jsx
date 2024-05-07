@@ -26,6 +26,8 @@ export default function Basket() {
                         <div className="flex flex-column align-items-center sm:align-items-start gap-3">
                             <div className="text-2xl font-bold text-900">נושא הקורס:{order.courseId.title} </div>
                             <div className="text-2xl font-bold text-900">מרצה:{order.courseId.lecturer.name}</div>
+                            <div className="text-2xl font-bold text-900">תאריך הקורס::{order.courseId.date}</div>
+
                             {order.courseId.date > Date() ? <h3>שים לב: עבר תאריך ההרשמה לקורס,בביצוע התשלום קורס זה לא יכלל</h3> : <></>}
                             <div className="flex align-items-center gap-3">
                                 <span className="flex align-items-center gap-2">
@@ -70,17 +72,18 @@ export default function Basket() {
             }
             <Button label="לתשלום" className="w-7rem mx-auto" onClick={() => {
                 setVisible(true);
+                let a = 0
                 orders.forEach(element => {
-                    if (element.courseId.date > Date()) 
-                    setTotalPayment(totalPayment + element.courseId.cost)
-                    
+                    // if (element.courseId.date > Date())
+                    a += element.courseId.cost
                 })
+                setTotalPayment(a)
+
             }}></Button>
 
 
-            <Dialog header="מחיר לתשלום" visible={visible} style={{ width: '15vw' }} onHide={() => {setVisible(false);setTotalPayment(0)}}>
-                <InputText  placeholder={totalPayment} required />
-                <br /><br />
+            <Dialog header="מחיר לתשלום" visible={visible} style={{ width: '15vw' }} onHide={() => { setVisible(false); setTotalPayment(0) }}>
+                <h1>{totalPayment}$ </h1>
             </Dialog>
         </div>
 

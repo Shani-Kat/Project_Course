@@ -19,6 +19,7 @@ import CoursesList from "./manager/course/coursesEditList";
 import ActiveCourseList from "./simpleUser/courses/activeCoursesList";
 import Dell from "./common/dell";
 import CourseList from "./simpleUser/courses/coursesList";
+import EditUser from "./simpleUser/users/editUser";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/course" element={<CoursesList />} />
             <Route path="/activeCourses" element={<CourseByKategory/>} />
             <Route path="/basket" element={<Basket />} />
+            <Route path="/userEditUser/:id" element={<EditUser />} />
             <Route path="/kategories" element={<EditKategories/>} />
             <Route path="/lecturers" element={<EditLecturers/>} />
             <Route path="/dell" element={<Dell/>} />

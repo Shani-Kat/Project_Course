@@ -100,7 +100,8 @@ export default function Home() {
                 {
                     label: 'עריכת שם המשתמש',
                     template: itemRenderer,
-                    command: () => { navigate("/editUser") }
+                    command: () => { 
+                        navigate(`/userEditUser/${_id}`,{state:{ id: _id}})}
                 },
                 {
                     label: 'התנתקות',
@@ -175,7 +176,8 @@ export default function Home() {
                 {
                     label: 'עריכת שם המשתמש',
                     template: itemRenderer,
-                    command: () => { navigate("/editUser") }
+                    command: () => { 
+                        navigate(`/userEditUser/${_id}`,{state:{ id: _id}})}
                 },
                 {
                     label: 'התנתקות',
@@ -243,10 +245,13 @@ export default function Home() {
             <Menubar model={status=="manager"?managerItems:items} start={start} end={end} />
         </div>
         <main><Outlet /></main>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
         <StyledFooter >
-        <div>
           <p>© 2024 Your Website Name Contact: example@example.com</p>
-        </div>
       </StyledFooter>
     </>
 

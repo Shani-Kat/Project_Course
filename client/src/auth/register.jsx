@@ -115,8 +115,7 @@ const Register = () => {
           required
           {...register("phone", { required: true })}
         />
-        <br />
-        <br />
+       
         <RadioGroup>
           <RadioLabel>
            
