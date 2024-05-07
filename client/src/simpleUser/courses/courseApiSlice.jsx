@@ -7,6 +7,12 @@ const courseApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags:["courses"]
     }),
+    getOrdersForCourse: build.query({
+      query: (id) => ({
+        url: `/api/courses/${id}/orders`,
+      }),
+      providesTags:["courses"]
+    }),
 
     getCourseById: build.query({
       query: (id) => ({
@@ -53,4 +59,4 @@ const courseApiSlice = apiSlice.injectEndpoints({
 
   }),
 });
-export const { useAddCourseMutation, useGetCoursesQuery,useUpdateCourseMutation,useDeleteCourseMutation,useGetActiveCoursesQuery,useGetCourseByIdQuery,useGetCourseByKategoriesQuery } = courseApiSlice;
+export const { useAddCourseMutation, useGetCoursesQuery,useUpdateCourseMutation,useDeleteCourseMutation,useGetActiveCoursesQuery,useGetCourseByIdQuery,useGetCourseByKategoriesQuery,useGetOrdersForCourseQuery } = courseApiSlice;

@@ -1,7 +1,6 @@
 
 import React from "react";
 
-import AllCoursesList from "./allCoursesList";
 import CoursesList from "./coursesEditList";
 import AddCourse from "./addCourse";
 

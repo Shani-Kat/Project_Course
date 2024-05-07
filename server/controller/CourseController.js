@@ -25,8 +25,12 @@ const getCoursesByKategory = async (req, res) => {
     .lean();
   res.json(courses);
 };
-const getOrdersForCourse=async (req,res)=>{
-  
+const getOrdersOfCourse= async (req,res)=>{
+  const {id}=req.params
+  const orders = await Order.find({courseId:id})
+    .populate("userId", { password:0 })
+    .lean();
+  res.json(orders);
 }
 
 const createNewCourse = async (req, res) => {
@@ -175,5 +179,6 @@ module.exports = {
   updateCourse,
   deleteCourse,
   getActiveCourses,
-  getCoursesByKategory
+  getCoursesByKategory,
+  getOrdersOfCourse
 };

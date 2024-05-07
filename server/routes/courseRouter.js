@@ -10,6 +10,8 @@ router.post('/',courseController.createNewCourse)
 
 router.get('/:id',courseController.getCourseById)
 
+router.get('/:id/orders',courseController.getOrdersOfCourse)
+
 router.put('/',courseController.updateCourse)
 
 router.delete('/',courseController.deleteCourse)
