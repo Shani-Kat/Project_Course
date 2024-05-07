@@ -7,7 +7,7 @@ const login=async(req,res)=>{
         return res.status(400).json({message:"email or password is missing"})
     }
     const user= await User.findOne({email}).lean()
-    if(!user || !user.active){
+    if(!user){
         return res.status(400).json({message:"Unauthorized1"})
     }
     const match = await bcrypt.compare(password,user.password)

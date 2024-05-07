@@ -14,7 +14,7 @@ export default function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [visible, setVisible] = useState(false);
-    const { register, handleSubmit ,reset} = useForm()
+    const { register, handleSubmit, reset } = useForm()
     const [message, setMessage] = useState(" ");
     const [loginFunc, { isError, error, isSuccess, data }] = useLoginMutation()
     useEffect(() => {
@@ -26,11 +26,12 @@ export default function Login() {
 
         }
     }, [isSuccess])
-    
-    const onSubmit = (data) => {
-        if (message == '') {            reset()
 
-            
+    const onSubmit = (data) => {
+        if (message == '') {
+            reset()
+
+
 
             loginFunc(data)
 
@@ -44,8 +45,8 @@ export default function Login() {
 
 
 
-    
-    
+
+
     function handleEmail(event) {
         let new_Email = event.target.value;
         if (!validator.isEmail(new_Email)) {

@@ -41,7 +41,9 @@ export default function CourseList() {
           />
           <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
             <div className="flex flex-column align-items-center sm:align-items-start gap-3">
-              <div className="text-2xl font-bold text-900">נ{course.title}  </div>
+              <div className="text-2xl font-bold text-900">{course.title}  </div>
+              <div className="text-2xl font-bold text-900">{new Date(course.date).getDate()+"-"+(new Date(course.date).getMonth()+1)+"-"+new Date(course.date).getFullYear()}  </div>
+
               <div className="text-2xl font-bold text-900">
                 {course.lecturer.name}
               </div>{" "}
@@ -88,6 +90,8 @@ export default function CourseList() {
               alt={course.title}
             />
             <div className="text-2xl font-bold">{course.title}</div>
+            <div className="text-2xl font-bold text-900">{new Date(course.date).getDate()+"-"+(new Date(course.date).getMonth()+1)+"-"+new Date(course.date).getFullYear()}  </div>
+
             <div className="text-2xl font-bold">{course.lecturer.name}</div>
           </div>
           <div className="flex align-items-center justify-content-between">

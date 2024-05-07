@@ -25,6 +25,9 @@ const getCoursesByKategory = async (req, res) => {
     .lean();
   res.json(courses);
 };
+const getOrdersForCourse=async (req,res)=>{
+  
+}
 
 const createNewCourse = async (req, res) => {
   if (req.user.status != "manager") {

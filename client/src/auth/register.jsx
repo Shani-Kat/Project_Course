@@ -10,37 +10,38 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setToken } from "./authSlice";
 import styled from "styled-components";
+const StyledCard = styled.div`
+width: 50%;
+margin: 0 auto;
+padding: 20px;
+background-color: #0C3C6A;
+border-radius: 5px;
+color:#E3C164;
+
+`;
+const RadioGroup = styled.div`
+margin-top: 30px;
+
+`;
+
+const RadioLabel = styled.label`
+margin-right: 10px;
+color:#ffffff;
+`;
+const StyledRadioLabel = styled.label`
+margin-right: 5px;
+cursor: pointer;
+
+input[type="radio"]:hover + & {
+  color: #ff5733; /* Change color on hover */
+}
+
+input[type="radio"]:checked + & {
+  color: #ff5733; /* Change color when checked */
+}
+`;
 const Register = () => {
-  const StyledCard = styled.div`
-  width: 50%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #0C3C6A;
-  border-radius: 5px;
-  color:#E3C164;
 
-`;
-  const RadioGroup = styled.div`
-  margin-top: 30px;
-
-`;
-
-  const RadioLabel = styled.label`
-  margin-right: 10px;
-  color:#ffffff;
-`;
-  const StyledRadioLabel = styled.label`
-  margin-right: 5px;
-  cursor: pointer;
-
-  input[type="radio"]:hover + & {
-    color: #ff5733; /* Change color on hover */
-  }
-
-  input[type="radio"]:checked + & {
-    color: #ff5733; /* Change color when checked */
-  }
-`;
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -52,12 +53,17 @@ const Register = () => {
   const [password, setPassword] = useState("");
   useEffect(() => {
     if (isSuccess) {
-      loginFunc({ email, password })
+     console.log(email);
+     console.log(password);
+
+     loginFunc({ email, password })  ;  
+
     }
   }, [isSuccess])
 
   useEffect(() => {
     if (isLoginSuccess) {
+  
       dispatch(setToken(loginData))
       setVisible(false)
       navigate("/", { status: true })

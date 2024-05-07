@@ -26,9 +26,9 @@ export default function Basket() {
                         <div className="flex flex-column align-items-center sm:align-items-start gap-3">
                             <div className="text-2xl font-bold text-900">נושא הקורס:{order.courseId.title} </div>
                             <div className="text-2xl font-bold text-900">מרצה:{order.courseId.lecturer.name}</div>
-                            <div className="text-2xl font-bold text-900">תאריך הקורס::{order.courseId.date}</div>
+                            <div className="text-2xl font-bold text-900">תאריך הקורס::{new Date(order.courseId.date).getDate()+"-"+(new Date(order.courseId.date).getMonth()+1)+"-"+new Date(order.courseId.date).getFullYear()}</div>
 
-                            {order.courseId.date > Date() ? <h3>שים לב: עבר תאריך ההרשמה לקורס,בביצוע התשלום קורס זה לא יכלל</h3> : <></>}
+                            {new Date(order.courseId.date) <new Date() ? <h3>שים לב: עבר תאריך ההרשמה לקורס,בביצוע התשלום קורס זה לא יכלל</h3> : <></>}
                             <div className="flex align-items-center gap-3">
                                 <span className="flex align-items-center gap-2">
                                     <i className="pi pi-tag"></i>
@@ -74,7 +74,7 @@ export default function Basket() {
                 setVisible(true);
                 let a = 0
                 orders.forEach(element => {
-                    // if (element.courseId.date > Date())
+                     if (new Date(element.courseId.date) > new Date())
                     a += element.courseId.cost
                 })
                 setTotalPayment(a)
