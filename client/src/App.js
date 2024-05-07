@@ -18,7 +18,7 @@ import Basket from "./simpleUser/orders/basket";
 import CoursesList from "./manager/course/coursesEditList";
 import ActiveCourseList from "./simpleUser/courses/activeCoursesList";
 import Dell from "./common/dell";
-import OldDateBasket from "./simpleUser/orders/oldDateBasket";
+import CourseList from "./simpleUser/courses/coursesList";
 
 function App() {
   return (
@@ -41,7 +41,7 @@ function App() {
             <Route path="/mCourses" element={<EditCourses/>} />
             <Route path="/Course/:id" element={<CourseCard/>} />
             <Route path="/Aaa" element={<Aaa/>} />
-            <Route path="/Course/kategory/:id" element={<ActiveCourseList/>} />
+            <Route path="/Course/kategory/:id" element={<CourseList/>} />
 
           </Route>
         </Routes>

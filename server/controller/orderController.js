@@ -12,28 +12,15 @@ const getActiveOrders = async (req, res) => {
 
 
 
-const getOldDateOrders = async (req, res) => {
-    const orders = await Order.find({ date: { $lt: new Date() } }).populate("userId").populate({
-        path: 'courseId',
-        populate: [{ path: 'lecturer' },{path:'kategory'}]
-      });
 
-    res.json(orders);
-  };
-const getUserActiveOrders = async (req, res) => {
-    const orders = await Order.find({userId:req.user._id,date: { $lte: new Date() } }).populate("userId").populate({
+const getUserOrders = async (req, res) => {
+    const orders = await Order.find({userId:req.user._id}).populate("userId").populate({
         path: 'courseId',
         populate: [{ path: 'lecturer' },{path:'kategory'}]
       });
     res.json(orders)
 }
-const getOldDateUserOrders = async (req, res) => {
-    const orders = await Order.find({userId:req.user._id,date: { $lt: new Date() } }).populate("userId").populate({
-        path: 'courseId',
-        populate: [{ path: 'lecturer' },{path:'kategory'}]
-      });
-    res.json(orders)
-}
+
 const createOrder = async (req, res) => {
     const { payment_status, courseId } = req.body;
     if (!courseId) {
@@ -65,4 +52,4 @@ const deleteOrder = async (req, res) => {
 
 
 
-module.exports = { getActiveOrders, createOrder, deleteOrder,getUserActiveOrders ,getOldDateOrders,getOldDateUserOrders}
+module.exports = { getActiveOrders, createOrder, deleteOrder,getUserOrders }

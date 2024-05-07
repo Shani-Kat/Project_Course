@@ -9,26 +9,15 @@ const orderApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags:["orders"]
     }),
-    getOldDateOrders: build.query({
+    
+    getUserOrders: build.query({
       query: () => ({
-        url: "/api/orders/oldDateOders",
-      }),
-      providesTags:["orders"]
-    }),
-    getUserActiveOrders: build.query({
-      query: () => ({
-        url: "/api/orders/userActiveOrders",
+        url: "/api/orders/userOrders",
 
       }),
       providesTags:["orders"]
     }),
-    getOldDateUserOrders: build.query({
-      query: () => ({
-        url: "/api/orders/userOldDateOrders",
-
-      }),
-      providesTags:["orders"]
-    }),
+  
     addOrder: build.mutation({
       query: (order) => ({
         url: "/api/orders",
@@ -47,4 +36,4 @@ const orderApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
-export const {useAddOrderMutation,useGetOrdersQuery,useDeleteOrderMutation,useGetUserActiveOrdersQuery,useGetOldDateOrdersQuery,useGetOldDateUserOrdersQuery} = orderApiSlice;
+export const {useAddOrderMutation,useGetOrdersQuery,useDeleteOrderMutation,useGetUserOrdersQuery} = orderApiSlice;
