@@ -37,10 +37,7 @@ export default function Home() {
     const [visible, setVisible] = useState(false);
 
     const items = [
-        {
-            label: 'דף הבית',
-            command: () => { navigate("/") }
-        },
+        
 
 
         {
@@ -74,20 +71,14 @@ export default function Home() {
 
             ]
         },
-        {
-            label: 'קורסים',
-            // items: kategotyToShow,
-
-            command: () => { localStorage.getItem("token") ? navigate("/activeCourses") : navigate('/LoginToEnterCourses') },
-            // visible:localStorage.getItem("token")?true:false
-        },
+       
         {
             label: 'יצירת קשר',
             template: itemRenderer
         },
 
         {
-            label: '?רוצה להיות שותף',
+            label: 'אודות הארגון',
 
         },
 
@@ -107,48 +98,10 @@ export default function Home() {
                     label: 'התנתקות',
                     template: itemRenderer,
                     command: () => { dispatch(removeToken()); navigate("/") }
-                }
+                },
+              
             ]
-        },
-    ];
 
-    const managerItems = [
-        {
-            label: 'דף הבית',
-            command: () => { navigate("/") }
-        },
-
-
-        {
-            visible: localStorage.getItem("token") ? true : false,
-            label: "הקורסים שלי",
-            icon: "pi pi-shopping-cart",
-            className: "p-button-rounded",
-            command: () => {
-                navigate("/basket")
-            }
-        },
-        {
-            label: 'בחר שפה',
-            items: [
-                {
-                    label: 'עברית',
-                    template: itemRenderer,
-
-                },
-                {
-                    label: 'English',
-                    template: itemRenderer
-                },
-                {
-                    label: 'Español',
-                    template: itemRenderer
-                },
-                {
-                    separator: true
-                },
-
-            ]
         },
         {
             label: 'קורסים',
@@ -156,16 +109,14 @@ export default function Home() {
 
             command: () => { localStorage.getItem("token") ? navigate("/activeCourses") : navigate('/LoginToEnterCourses') },
             // visible:localStorage.getItem("token")?true:false
-        },
-        {
-            label: 'יצירת קשר',
-            template: itemRenderer
-        },
+        },{
+            label: 'דף הבית',
+            command: () => { navigate("/") }
+        }
+    ];
 
-        {
-            label: '?רוצה להיות שותף',
-
-        },
+    const managerItems = [
+        
 
 
         {
@@ -187,6 +138,27 @@ export default function Home() {
                
             ]
         },
+
+        {
+            visible: localStorage.getItem("token") ? true : false,
+            label: "הקורסים שלי",
+            icon: "pi pi-shopping-cart",
+            className: "p-button-rounded",
+            command: () => {
+                navigate("/basket")
+            }
+        },
+       
+        {
+            label: 'יצירת קשר',
+            template: itemRenderer
+        },
+
+        {
+            label: 'אודות הארגון',
+
+        },
+
         {
             label: 'הרשאות מנהל',
 
@@ -220,9 +192,44 @@ export default function Home() {
                 {
                     separator: true
                 },
+                
 
             ]
         },
+         
+        {
+            label: 'קורסים',
+            // items: kategotyToShow,
+
+            command: () => { localStorage.getItem("token") ? navigate("/activeCourses") : navigate('/LoginToEnterCourses') },
+            // visible:localStorage.getItem("token")?true:false
+        },
+        {
+            label: 'בחר שפה',
+            items: [
+                {
+                    label: 'עברית',
+                    template: itemRenderer,
+
+                },
+                {
+                    label: 'English',
+                    template: itemRenderer
+                },
+                {
+                    label: 'Español',
+                    template: itemRenderer
+                },
+                {
+                    separator: true
+                },
+
+            ]
+        },
+        {
+            label: 'דף הבית',
+            command: () => { navigate("/") }
+        }
     ];
 
 
@@ -248,8 +255,6 @@ export default function Home() {
         <br></br>
         <br></br>
         <br></br>
-        <br></br>
-
         <StyledFooter >
           <p>© 2024 Your Website Name Contact: example@example.com</p>
       </StyledFooter>
