@@ -35,7 +35,7 @@ const AddCourse = () => {
     <div className="card flex justify-content-center">
       <br /><br />
       <Button label="הוסף קורס" onClick={() => setVisible(true)} />
-      <Dialog header="הוספת קורס" visible={visible} style={{ width: '25vw' }} onHide={() => setVisible(false)} dir='rtl'>
+      <Dialog header="הוספת קורס" visible={visible} style={{ minwidth: '15vw',dir:"rtl" }} onHide={() => setVisible(false)} dir='rtl'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputText placeholder="שם קורס" required  {...register("title", { required: true, maxLength: 50 })} />
           <br /><br />

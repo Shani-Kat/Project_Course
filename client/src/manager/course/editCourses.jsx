@@ -10,10 +10,8 @@ const EditCourses = () => {
 
   
   return (<>
-      <br/>      <br/>
 
       <AddCourse/>
-      <br/> <br/>
     <div className="card flex justify-content-center">
     <CoursesList/>
     

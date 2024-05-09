@@ -9,9 +9,7 @@ const EditKategories = () => {
 
   
   return (<>
-      <br/>
     <AddKategory/>
-     <br/>
     <div className="card flex justify-content-center">
     <KategoriesList/>
     </div>

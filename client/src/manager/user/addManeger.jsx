@@ -25,7 +25,7 @@ const AddManager = () => {
     <div className="card flex justify-content-center" dir="rtl">
 
 <Button label="הוספת מנהל" onClick={() => setVisible(true)} />
-<Dialog label="הוספת מנהל" visible={visible} style={{ width: '40vw',dir:'rtl' }} onHide={() => setVisible(false)}  >
+<Dialog label="הוספת מנהל" visible={visible} style={{ minwidth: '15vw',dir:"rtl" }} onHide={() => setVisible(false)}  >
       <form dir="rtl"  onSubmit={handleSubmit(onSubmit)}>
         <InputText placeholder="שם פרטי" required  {...register("firstName", { required: true })} />
         <br /><br />

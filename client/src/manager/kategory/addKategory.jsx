@@ -25,7 +25,7 @@ const AddKategory = () => {
     <div className="card flex justify-content-center">
       <br /><br />
       <Button label="הוסף קטגוריה" onClick={() => setVisible(true)} />
-      <Dialog header="הוספת קטגוריה" visible={visible} style={{ width: '15vw' }} onHide={() => setVisible(false)}>
+      <Dialog header="הוספת קטגוריה" visible={visible} style={{ minwidth: '15vw' }} onHide={() => setVisible(false)}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputText placeholder="שם קטגוריה" required  {...register("type", { required: true, maxLength: 50 })} />
          
