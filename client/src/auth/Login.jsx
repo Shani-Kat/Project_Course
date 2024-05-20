@@ -16,6 +16,12 @@ export default function Login() {
     const [visible, setVisible] = useState(false);
     const { register, handleSubmit, reset } = useForm()
     const [message, setMessage] = useState(" ");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [messageEmail, setMessageEmail] = useState('');
+    const [isForgotPassword, setIsForgotPassword] = useState(false);
+  
+  
     const [loginFunc, { isError, error, isSuccess, data }] = useLoginMutation()
     useEffect(() => {
         if (isSuccess) {

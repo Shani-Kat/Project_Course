@@ -49,7 +49,7 @@ const AddLecturer = () => {
     <div className="card flex justify-content-center">
       <br /><br />
       <Button label="הוסף מרצה" onClick={() => setVisible(true)} />
-      <Dialog header="הוספת מרצה" visible={visible} style={{ width: '15vw' }} onHide={() => setVisible(false)}>
+      <Dialog header="הוספת מרצה" visible={visible} style={{ minWidth:"15vw" }} onHide={() => setVisible(false)}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputText placeholder="שם מרצה" required  {...register("name", { required: true, maxLength: 20 })} />
           <br /><br />

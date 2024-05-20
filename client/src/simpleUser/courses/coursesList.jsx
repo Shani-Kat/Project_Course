@@ -7,6 +7,7 @@ import Laoding from "./Loading";
 import { useAddOrderMutation } from "../orders/ordersApiSlise";
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card } from "primereact/card";
+import { Accordion, AccordionTab } from "primereact/accordion";
 export default function CourseList() {
   const location = useLocation()
   const navigate=useNavigate()
@@ -84,18 +85,18 @@ export default function CourseList() {
             </div>
           </div>
           <div className="flex flex-column align-items-center gap-3 py-5">
-            <img
+            {/* <img
               className="w-9 shadow-2 border-round"
               src={`http://localhost:1133/logoV.png`}
               alt={course.title}
-            />
-            <div className="text-2xl font-bold">{course.title}</div>
-            <div className="text-2xl font-bold text-900">{new Date(course.date).getDate()+"-"+(new Date(course.date).getMonth()+1)+"-"+new Date(course.date).getFullYear()}  </div>
+            /> */}
+            <div className="text-2xl font-bold">נושא הקורס: {course.title}</div>
+            <div className="text-2xl font-bold text-900">תאריך הקורס: {new Date(course.date).getDate()+"-"+(new Date(course.date).getMonth()+1)+"-"+new Date(course.date).getFullYear()}  </div>
 
-            <div className="text-2xl font-bold">{course.lecturer.name}</div>
+            <div className="text-2xl font-bold">מרצה הקורס: {course.lecturer.name}</div>
           </div>
           <div className="flex align-items-center justify-content-between">
-            <span className="text-2xl font-semibold">${course.cost}</span>
+            <span className="text-2xl font-semibold">מחיר: ${course.cost}</span>
             <Button
               icon="pi pi-shopping-cart"
               className="p-button-rounded"
@@ -104,7 +105,23 @@ export default function CourseList() {
                 addOrder({ courseId: course._id });
               }}
             ></Button>
+  
           </div>
+          <Accordion>
+            <AccordionTab header="פרטים נוספים על הקורס">
+                <div >
+                    {/* Display product details here such as name, price, description */}
+                    
+                    <p>נושא הקורס:  {course.title}</p>
+                    <p>מרצה הקורס:  {course.lecturer.name}</p>
+                    <p>קטגורית הקורס:  {course.kategory.type}</p>
+                    <p>תקציר הקורס:  {course.summary}</p>
+                    <p>תאריך הקורס:  {new Date(course.date).getDate()+"-"+(new Date(course.date).getMonth()+1)+"-"+new Date(course.date).getFullYear()}</p>
+                    <p>תקציר אחרון להרשמה:  {new Date(course.lastDateToRegist).getDate()+"-"+(new Date(course.lastDateToRegist).getMonth()+1)+"-"+new Date(course.lastDateToRegist).getFullYear()}</p>
+
+                </div>
+            </AccordionTab>
+        </Accordion>
         </div>
       </div>
     );

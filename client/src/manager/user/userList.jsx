@@ -122,7 +122,8 @@ export default function UsersList() {
     return (
         <div className="card p-fluid">
             {/* <Toast ref={toast} /> */}
-            <DataTable scrollable scrollHeight="500px" className="mt-4" value={users} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '40rem' }}>
+            
+            <DataTable scrollable scrollWidth="1200px" scrollHeight="600px" className="mt-4" value={users} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '40rem' }}>
 
                 <Column header="ערוך משתמש" rowEditor={allowEdit} headerStyle={{ width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
                 <Column header="מחיקת משתמש" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '6rem' }} body={actionButtons} />

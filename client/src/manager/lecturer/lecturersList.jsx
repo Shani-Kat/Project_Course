@@ -75,7 +75,7 @@ export default function LecturersList() {
 
     return (
         <div className="card p-fluid">
-            <DataTable value={lecturers} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
+            <DataTable  scrollable scrollWidth="1200px" scrollHeight="600px" value={lecturers} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
                 
             <Column header="ערוך מרצה" rowEditor={allowEdit} headerStyle={{ width: '10rem'}} bodyStyle={{ textAlign: 'center' }}></Column>
             <Column header="מחיקת מרצה" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '10rem' }} body={actionButtons} />

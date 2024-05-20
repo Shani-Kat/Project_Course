@@ -5,11 +5,13 @@ import { Button } from 'primereact/button';
 import { useLocation } from 'react-router-dom'
 import { useGetCourseByIdQuery } from './courseApiSlice';
 import SimpleLoading from '../../common/simpleLoading';
+import { Accordion, AccordionTab } from 'primereact/accordion';
+
 export default function CourseCard() {
     const location = useLocation()
-    const {data: course,isLoading} = useGetCourseByIdQuery(location.state.id)
+    const { data: course, isLoading } = useGetCourseByIdQuery(location.state.id)
 
-    if (isLoading) return <SimpleLoading/>
+    if (isLoading) return <SimpleLoading />
     if (!course) return <div>Missing post!</div>
     console.log(course);
     const header = (
@@ -23,24 +25,18 @@ export default function CourseCard() {
     );
 
     return (
-        <div className="card flex justify-content-center">
-            <Card title="Advanced Card" subTitle="Card subtitle" footer={footer} header={header} className="md:w-30rem">
-            <div>כותרת הקורס:
-                {course.tytle}
-            </div>
-            <div>מרצה הקורס:
-                {course.lecturer.name}
-            </div>
-            <div>קטגורית הקורס:
-                {course.kategory.type}
-            </div>
-                <p className="m-0">
-                   תקציר הקורס:
-                   {course.summary}
-                </p>
+        <Accordion>
+            <AccordionTab header="פרטי הקורס:">
+                <div>
+                    {/* Display product details here such as name, price, description */}
+                    <p>כותרת הקורס: {course.tytle}</p>
+                    <p>מרצה הקורס: {course.lecturer.name}</p>
+                    <p>קטגורית הקורס: {course.kategory.type}</p>
+                    <p>תקציר הקורס: {course.summary}</p>
 
-            </Card>
-
-        </div>
-    )
+                </div>
+            </AccordionTab>
+        </Accordion>
+    );
 }
+

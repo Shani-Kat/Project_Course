@@ -12,10 +12,8 @@ const EditCourses = () => {
   return (<>
 
       <AddCourse/>
-    <div className="card flex justify-content-center">
     <CoursesList/>
     
-    </div>
 </>
   )
 }

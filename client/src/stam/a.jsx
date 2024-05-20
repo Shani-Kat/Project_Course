@@ -30,7 +30,7 @@ export default function Aaa() {
     const navigate=useNavigate()
     return(
     <div 
-    onClick={()=>{ navigate(`/Course/${3}`,{state:{ id: '65f87130b587ae5891afa66c' }})}} 
+    onClick={()=>{ navigate(`/Course/${3}`,{state:{ id: '663248e1bcee2b18076f8ecb' }})}} 
     >לחץ כאן</div>
     )
 
