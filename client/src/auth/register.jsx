@@ -53,8 +53,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   useEffect(() => {
     if (isSuccess) {
-     console.log(email);
-     console.log(password);
+  
 
      loginFunc({ email, password })  ;  
 
@@ -111,6 +110,7 @@ const Register = () => {
         <br />
         <InputText
           placeholder="מייל"
+          type="email"
           required
           {...register("email", { required: true })}
         />

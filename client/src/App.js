@@ -21,6 +21,7 @@ import Dell from "./common/dell";
 import CourseList from "./simpleUser/courses/coursesList";
 import EditUser from "./simpleUser/users/editUser";
 import CourseOrders from "./manager/course/courseOrders";
+import AboatUs from "./common/aboutUs";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="/lecturers" element={<EditLecturers/>} />
             <Route path="/dell" element={<Dell/>} />
             <Route path="/users" element={<EditUsers/>} />
+            <Route path="/aboatUs" element={<AboatUs/>} />
             <Route path="/mCourses" element={<EditCourses/>} />
             <Route path="/Course/:id" element={<CourseCard/>} />
             <Route path="/Aaa" element={<Aaa/>} />

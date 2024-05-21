@@ -55,7 +55,7 @@ const AddLecturer = () => {
           <br /><br />
 
 
-          <InputText label="email" placeholder="אימייל" {...register("email", { required: true, maxLength: 20 })} />
+          <InputText label="email" type="email" placeholder="אימייל" {...register("email", { required: true, maxLength: 20 })} />
           <br /><br />
           <InputText label="phone" register={register} placeholder="מספר טלפון"  {...register("phone", { required: true, maxLength: 20 })} />
           {/* <Input label="First Name" register={register} required placeholder="Large"/>

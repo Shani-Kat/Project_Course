@@ -4,7 +4,6 @@ import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import SimpleLoading from '../../common/simpleLoading';
 import { Button } from 'primereact/button';
-
 import { Dropdown } from 'primereact/dropdown';
 import { Tag } from 'primereact/tag';
 import { useDeleteCourseMutation, useGetCoursesQuery, useGetOrdersForCourseQuery, useUpdateCourseMutation } from '../../simpleUser/courses/courseApiSlice';
@@ -12,9 +11,11 @@ import { useNavigate } from 'react-router-dom';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import { Dialog } from 'primereact/dialog';
+import {  ConfirmPopup, confirmPopup } from 'primereact/confirmpopup'
 
 export default function CoursesList() {
     const toast = useRef(null);
+    const ID = useRef(null);
     const [kategoriesList, setKategoriesList] = useState([])
     const [statuses] = useState(['merried', "unmerried"]);
     const [sexes] = useState(['female', 'male']);
@@ -27,32 +28,42 @@ export default function CoursesList() {
     if (isLoading) return (<SimpleLoading />)
     if (isUpdateLoading) return (<SimpleLoading />)
     if (isDeleteLoading) return (<SimpleLoading />)
+    const accept = () => {        
+        toast.current.show({ severity: 'info', summary: 'מאושר', detail: 'הקורס נמחק בהצלחה', life: 3000 });
+        deleteCourse({_id:ID.current})
 
+    }
+    const reject = () => {
+        toast.current.show({ severity: 'warn', summary: 'שים לב', detail: 'הקורס לא נמחק', life: 3000 });
+    }
 
-
-    const confirm2 = () => {
-        confirmDialog({
-            message: 'האם אתה בטוח שברצנך למחוק קורס זה',
-            header: 'מחיקת קורס',
-            icon: 'pi pi-info-circle',
-            defaultFocus: 'reject',
-            acceptClassName: 'p-button-danger',
+    const showTemplate = () => {
+        confirmPopup({
+           
+            group: 'templating',
+            header: 'Confirmation',
+            message: (
+                <div className="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+                    <i className="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+                    <span>??האם אתה בטוח שברצונך למחוק את הקורס מהסל שלך</span>
+                </div>
+            ),
+            acceptIcon: 'pi pi-check',
+            rejectIcon: 'pi pi-times',
+            rejectClass: 'p-button-sm',
+            acceptClass: 'p-button-outlined p-button-sm',
             accept,
             reject
         });
     };
-    const reject = () => {
-        toast.current.show({ severity: 'warn', summary: 'שים לב:', detail: 'הקורס לא נמחק כבקשתך', life: 3000 });
-    }
-    const accept = () => {
-        toast.current.show({ severity: 'info', summary: 'מאושר', detail: 'הקורס נמחק בהצלחה', life: 3000 });
-    }
-
     const actionButtons = (rowData) => {
-        return <Button icon="pi pi-trash" onClick={() => {deleteCourse({ _id: rowData._id }) }}></Button>
+        return <Button icon="pi pi-trash"  onClick={() => {
+            ID.current = rowData._id
+            showTemplate()
+        }}></Button>
     }
     const showButton = (rowData) => {
-        return <Button icon="pi pi-id-card" onClick={() => { navigate(`/courseOrders/${rowData._id}`, { state: { id: rowData._id } }) }}></Button>
+        return <Button icon="pi pi-id-card" onClick={() => { navigate(`/courseOrders/${rowData._id}`, { state: { id: rowData._id ,title:rowData.title,category:rowData.kategory.type} }) }}></Button>
     }
 
     const onRowEditComplete = (e) => {
@@ -113,13 +124,7 @@ export default function CoursesList() {
     return (
         <div className="card p-fluid">
             <Toast ref={toast} />
-            <ConfirmDialog />
-            {/* <Dialog >
-            <div className="card flex flex-wrap gap-2 justify-content-center">
-                <Button onClick={confirm1} icon="pi pi-check" label="Confirm" className="mr-2"></Button>
-                <Button onClick={confirm2} icon="pi pi-times" label="Delete"></Button>
-            </div>
-            </Dialog> */}
+            <ConfirmPopup group="templating" />
             <DataTable scrollable scrollWidth="1200px" scrollHeight="600px" className="mt-4" value={courses} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '40rem' }}>
                 <Column header="ערוך קורס" rowEditor={allowEdit} headerStyle={{ width: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
                 <Column header="מחיקת קורס" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '6rem' }} body={actionButtons} />

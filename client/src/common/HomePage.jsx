@@ -79,7 +79,9 @@ export default function Home() {
 
         {
             label: 'אודות הארגון',
-
+            command: () => {
+                navigate("/aboatUs")
+            }
         },
 
 
@@ -156,7 +158,9 @@ export default function Home() {
 
         {
             label: 'אודות הארגון',
-
+            command: () => {
+                navigate("/aboatUs")
+            }
         },
 
         {
@@ -239,9 +243,6 @@ export default function Home() {
 
 
             <Login />
-
-            <InputText placeholder="Search" type="text" className="w-8rem sm:w-auto" />
-
         </div>
 
     </>);

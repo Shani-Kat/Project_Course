@@ -1,21 +1,50 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { DataView } from 'primereact/dataview';
-import { Tag } from 'primereact/tag';
 import { classNames } from 'primereact/utils';
 import { useDeleteOrderMutation, useGetUserOrdersQuery } from './ordersApiSlise';
 import LoadingBasket from './LoadingBasket';
 import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
+import { confirmPopup, ConfirmPopup } from 'primereact/confirmpopup';
+import { Toast } from 'primereact/toast';
 
 export default function Basket() {
     const { data: orders, isLoading, isError, error } = useGetUserOrdersQuery()
     const [delOrder, { isError1, isSuccess, error1 }] = useDeleteOrderMutation()
     const [totalPayment, setTotalPayment] = useState(0)
     const [visible, setVisible] = useState(false);
+    const toast = useRef(null);
+    const ID = useRef(null);
     if (isLoading) return (<LoadingBasket />)
     if (isError) return (<h1>{error}</h1>)
+    const showTemplate = () => {
+        confirmPopup({
+            group: 'templating',
+            header: 'Confirmation',
+            message: (
+                <div className="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+                    <i className="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+                    <span>??האם אתה בטוח שברצונך למחוק את הקורס מהסל שלך</span>
+                </div>
+            ),
+            acceptIcon: 'pi pi-check',
+            rejectIcon: 'pi pi-times',
+            rejectClass: 'p-button-sm',
+            acceptClass: 'p-button-outlined p-button-sm',
+            accept,
+            reject
+        });
+    };
+
+    const accept = () => {
+        toast.current.show({ severity: 'info', summary: 'מאושר', detail: 'ההזמנה נמחקה מהסל', life: 3000 });
+        delOrder(ID.current)
+    };
+
+    const reject = () => {
+        toast.current.show({ severity: 'warn', summary: 'לא מאושר', detail: 'כבקשתך ההזמנה לא תימחק', life: 3000 });
+    };
     const itemTemplate = (order, index) => {
         return (<>
             {/* {  order.courseId.date<Date()?alert("עבר תאריך ההרשמה לקורס tjs tu hu,r vbnmtho cxk akl, אנא מחק קורס זה מסל הקניות על מנת להמשיך"):<></>} */}
@@ -26,9 +55,9 @@ export default function Basket() {
                         <div className="flex flex-column align-items-center sm:align-items-start gap-3">
                             <div className="text-2xl font-bold text-900">נושא הקורס:{order.courseId.title} </div>
                             <div className="text-2xl font-bold text-900">מרצה:{order.courseId.lecturer.name}</div>
-                            <div className="text-2xl font-bold text-900">תאריך הקורס:{new Date(order.courseId.date).getDate()+"-"+(new Date(order.courseId.date).getMonth()+1)+"-"+new Date(order.courseId.date).getFullYear()}</div>
+                            <div className="text-2xl font-bold text-900">תאריך הקורס:{new Date(order.courseId.date).getDate() + "-" + (new Date(order.courseId.date).getMonth() + 1) + "-" + new Date(order.courseId.date).getFullYear()}</div>
 
-                            {new Date(order.courseId.date) <new Date() ? <h3>שים לב: עבר תאריך ההרשמה לקורס,בביצוע התשלום קורס זה לא יכלל</h3> : <></>}
+                            {new Date(order.courseId.date) < new Date() ? <h3>שים לב: עבר תאריך ההרשמה לקורס,בביצוע התשלום קורס זה לא יכלל</h3> : <></>}
                             <div className="flex align-items-center gap-3">
                                 <span className="flex align-items-center gap-2">
                                     <i className="pi pi-tag"></i>
@@ -40,10 +69,10 @@ export default function Basket() {
                             <span className="text-2xl font-semibold">${order.courseId.cost}</span>{
                             }
                             <Button icon="pi pi-trash" className="p-button-rounded"
-                                onClick={
-                                    () => { delOrder({ _id: order._id }) }
-
-                                }></Button>
+                                onClick={() => {
+                                    ID.current = order._id
+                                    showTemplate()
+                                }}></Button>
                         </div>
                     </div>
                 </div>
@@ -51,6 +80,7 @@ export default function Basket() {
         </>
         );
     };
+
 
     const listTemplate = (items) => {
         if (!items || items.length === 0) return null;
@@ -64,8 +94,9 @@ export default function Basket() {
 
     return (
         <div className="card">
+            <Toast ref={toast} />
 
-
+            <ConfirmPopup group="templating" />
             {
                 orders.length ? <DataView value={orders} listTemplate={listTemplate} paginator rows={5} /> : <h1>עדיין לא נרשמת לשיעורי התורה  שלנו</h1>
 
@@ -74,8 +105,8 @@ export default function Basket() {
                 setVisible(true);
                 let a = 0
                 orders.forEach(element => {
-                     if (new Date(element.courseId.date) > new Date())
-                    a += element.courseId.cost
+                    if (new Date(element.courseId.date) > new Date())
+                        a += element.courseId.cost
                 })
                 setTotalPayment(a)
 

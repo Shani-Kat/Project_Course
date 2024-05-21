@@ -13,7 +13,6 @@ export default function CourseCard() {
 
     if (isLoading) return <SimpleLoading />
     if (!course) return <div>Missing post!</div>
-    console.log(course);
     const header = (
         <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" />
     );

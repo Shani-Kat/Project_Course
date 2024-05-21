@@ -5,7 +5,7 @@ const orderController=require("../controller/orderController")
 router.get("/",orderController.getActiveOrders)
 router.get("/userOrders",orderController.getUserOrders)
 router.post("/",orderController.createOrder)
-router.delete("/",orderController.deleteOrder)
+router.delete("/:_id",orderController.deleteOrder)
 module.exports=router
 
 

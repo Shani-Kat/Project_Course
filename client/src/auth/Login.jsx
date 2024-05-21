@@ -72,7 +72,7 @@ export default function Login() {
                         <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
                             <div className="flex flex-wrap justify-content-center align-items-center gap-2">
                                 <label className="w-6rem">Email</label>
-                                <InputText required className="w-12rem" {...register("email", { required: true, maxLength: 50 })} onChange={handleEmail} />
+                                <InputText  type='email' required className="w-12rem" {...register("email", { required: true, maxLength: 50 })} onChange={handleEmail} />
                             </div>
                             <div className="flex flex-wrap justify-content-center align-items-center gap-2">
                                 <label className="w-6rem">Password</label>
