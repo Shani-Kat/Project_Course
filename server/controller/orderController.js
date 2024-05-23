@@ -36,11 +36,8 @@ const createOrder = async (req, res) => {
 }
 
 const deleteOrder = async (req, res) => {
-    const { _id } = req.params;
-    if(!_id){
-        return res.status(404).json({ message: "not found" })
-    }
-    const order = await Order.findById({ _id }).exec()
+    const { id } = req.params;
+    const order = await Order.findById({ _id:id }).exec()
     if (!order) {
         return res.status(400).json({ message: "no such order" })
     }

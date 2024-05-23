@@ -156,9 +156,8 @@ const deleteCourse = async (req, res) => {
   if (req.user.status != "manager") {
     return res.status(400).json({ message: "אין הרשאה" })
   }
-  const { _id } = req.body;
-
-  const course = await Course.findById({ _id }).exec();
+  const { id } = req.params;
+  const course = await Course.findById({ _id:id }).exec();
 
   if (!course) {
     return res.status(400).json({ message: "no such course" });

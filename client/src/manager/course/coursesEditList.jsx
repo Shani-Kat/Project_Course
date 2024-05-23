@@ -30,7 +30,7 @@ export default function CoursesList() {
     if (isDeleteLoading) return (<SimpleLoading />)
     const accept = () => {        
         toast.current.show({ severity: 'info', summary: 'מאושר', detail: 'הקורס נמחק בהצלחה', life: 3000 });
-        deleteCourse({_id:ID.current})
+        deleteCourse(ID.current)
 
     }
     const reject = () => {

@@ -85,8 +85,11 @@ const updateUser = async (req, res) => {
     res.json({ message: "users detailds changed" })
 }
 const deleteUser = async (req, res) => {
-    const { _id } = req.body
-    const user = await User.findById({ _id }).exec()
+    if(req.user.status!="manager"){
+        return res.status(400).json({ message:"אין הרשאה" })
+    }
+    const { id } = req.params
+    const user = await User.findById({ _id:id }).exec()
     if (!user) {
         return res.status(400).json({ message: "no such user" })
     }

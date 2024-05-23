@@ -75,13 +75,13 @@ const deleteLecturer=async(req,res)=>{
     if(req.user.status!="manager"){
         return res.status(400).json({ message:"אין הרשאה" })
     }
-    const {_id}=req.body;
+    const {id}=req.params;
 
-    const lecturer=await Lecturer.findById({_id}).exec()
+    const lecturer=await Lecturer.findById({_id:id}).exec()
     if(!lecturer){
        return res.status(400).json({message:"no such lecturer"})
     }
-    const courses=await Course.find({lecturer:_id}).lean()
+    const courses=await Course.find({lecturer:id}).lean()
     if (courses.length>0){
         return res.status(400).json({message:"ישנם קורסים מקטגוריה זאת, יש למחוק תחילה את הקורסים"})
     }

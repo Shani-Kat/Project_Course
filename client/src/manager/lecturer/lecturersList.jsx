@@ -21,7 +21,7 @@ export default function LecturersList() {
     if (isUpdateLoading) return (<SimpleLoading />)
     if (isDeleteLoading) return (<SimpleLoading />)
     const actionButtons=(rowData)=>{
-        return <Button icon="pi pi-trash" onClick={()=>{deleteLecturer({_id:rowData._id})}}></Button>     
+        return <Button icon="pi pi-trash" onClick={()=>{deleteLecturer(rowData._id)}}></Button>     
     }
     const activeButtons=(rowData)=>{
         return <Checkbox checked={rowData.active} onClick={()=>{updateActiveLecturer({_id:rowData._id})}}></Checkbox>     

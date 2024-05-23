@@ -60,13 +60,12 @@ const deleteKategory=async(req,res)=>{
     if(req.user.status!="manager"){
         return res.status(400).json({ message:"אין הרשאה" })
     }
-    const {_id}=req.body;
-    
-    const kategory=await Kategory.findById({_id}).exec()
+    const {id}=req.params;
+    const kategory=await Kategory.findById({_id:id}).exec()
     if(!kategory){
        return res.status(400).json({message:"no such kategory"})
     }
-    const courses=await Course.find({kategory:_id}).lean()
+    const courses=await Course.find({kategory:id}).lean()
     if (courses.length>0){
         return res.status(400).json({message:"ישנם קורסים מקטגוריה זאת, יש למחוק תחילה את הקורסים"})
     }

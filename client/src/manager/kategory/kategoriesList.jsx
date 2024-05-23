@@ -17,7 +17,7 @@ export default function KategoriesList() {
     if (isUpdateLoading) return (<SimpleLoading />)
     if (isDeleteLoading) return (<SimpleLoading />)
     const actionButtons=(rowData)=>{
-        return <Button icon="pi pi-trash" onClick={()=>{deleteKategory({_id:rowData._id})}}></Button>     
+        return <Button icon="pi pi-trash" onClick={()=>{deleteKategory(rowData._id)}}></Button>     
     }
 
     const onRowEditComplete = (e) => {

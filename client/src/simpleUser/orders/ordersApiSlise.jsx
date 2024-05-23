@@ -27,8 +27,8 @@ const orderApiSlice = apiSlice.injectEndpoints({
       invalidatesTags:["orders"]
     }),
     deleteOrder: build.mutation({
-      query: (_id) => ({
-        url: `/api/orders/${_id}`,
+      query: (id) => ({
+        url: `/api/orders/${id}`,
         method: "DELETE"
       }),
       invalidatesTags:["orders"]

@@ -10,7 +10,7 @@ router.get('/:id',kategoryController.getKategoryById)
 
 router.put('/',kategoryController.updateKategory)
 
-router.delete('/',kategoryController.deleteKategory)
+router.delete('/:id',kategoryController.deleteKategory)
 module.exports=router
 
 

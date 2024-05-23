@@ -27,7 +27,7 @@ export default function UsersList() {
     if (isDeleteLoading) return (<SimpleLoading />)
 
     const actionButtons = (rowData) => {
-        return <Button icon="pi pi-trash" onClick={() => { deleteUser({ _id: rowData._id }) }}></Button>
+        return <Button icon="pi pi-trash" onClick={() => { deleteUser( rowData._id) }}></Button>
     }
     function handleEmail(email) {
         if (!validator.isEmail(email)) {

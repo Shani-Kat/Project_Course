@@ -49,10 +49,10 @@ const courseApiSlice = apiSlice.injectEndpoints({
     }),
 
     deleteCourse: build.mutation({
-      query: (_id) => ({
-        url: "/api/courses",
+      query: (id) => ({
+        url: `/api/courses/${id}`,
         method: "DELETE",
-        body: _id,
+       
       }),
       invalidatesTags:["courses"]
     }),

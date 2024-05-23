@@ -15,7 +15,7 @@ router.put('/',userController.updateUser)
 
 // router.put('/active',verifyJwt,userController.updateUserActive)
 
-router.delete('/',userController.deleteUser)
+router.delete('/:id',verifyJwt,userController.deleteUser)
 
 module.exports=router
 

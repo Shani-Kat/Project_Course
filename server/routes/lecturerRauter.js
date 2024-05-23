@@ -12,7 +12,7 @@ router.put('/',lecturerController.updateLecturer)
 
 router.put('/active',lecturerController.updateActiveLecturer)
 
-router.delete('/',lecturerController.deleteLecturer)
+router.delete('/:id',lecturerController.deleteLecturer)
 
 module.exports=router
 
